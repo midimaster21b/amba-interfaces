@@ -31,4 +31,13 @@ interface axi4_lite_if #(parameter
    logic [(DATA_BYTES*8)-1:0] rdata;
    logic [1:0] rresp;
 
+
+   modport master (input  awready, wready, bvalid, bresp, arready, rvalid, rdata, rresp,
+		   output awvalid, awaddr, awprot, wvalid,
+		   wdata, wstrb, bready, arvalid, araddr, arprot, rready);
+
+   modport slave  (output awready, wready, bvalid, bresp, arready, rvalid, rdata, rresp,
+		   input  awvalid, awaddr, awprot, wvalid,
+		   wdata, wstrb, bready, arvalid, araddr, arprot, rready);
+
 endinterface // axi4_lite_if
