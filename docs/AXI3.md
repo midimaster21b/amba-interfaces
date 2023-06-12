@@ -56,6 +56,18 @@
 | ARLEN[3:0]   | M -> S    | See burst section below |
 
 
+### Read Data (R) Signals
+
+| Signal Name | Direction | Description |
+| ----------- | --------- | ----------- |
+| RVALID      | S -> M    | Valid handshake signal |
+| RREADY      | M -> S    | Ready handshake signal |
+| RLAST       | S -> M    | Indicator for the last beat in the read data stream |
+| RDATA[x:0]  | S -> M    | Read data |
+| RRESP[1:0]  | S -> M    | Response value indicating the success or failure of the read |
+| RID[x:0]    | S -> M    | See burst section below |
+
+
 ## Address Signals
 
 TODO: Add fill in this section
