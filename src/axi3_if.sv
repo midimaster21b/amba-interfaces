@@ -25,14 +25,14 @@ interface axi3_if #(parameter
    logic [NUM_ID_BITS_P-1:0]   wid;
 
    // Write response channel
-   logic		       bwvalid;
-   logic		       bwready;
+   logic		       bvalid;
+   logic		       bready;
    logic [1:0]		       bresp;
    logic [NUM_ID_BITS_P-1:0]   bid;
 
    // Read address channel
    logic		       arvalid;
-   logic		       aready;
+   logic		       arready;
    logic [(ADDR_BYTES*8)-1:0]  araddr; // 32-bit by spec
    logic [3:0]		       arcache;
    logic [2:0]		       arprot;
@@ -50,18 +50,18 @@ interface axi3_if #(parameter
    logic [1:0]		       rresp;
    logic [NUM_ID_BITS_P-1:0]   rid;
 
-   modport master (input  awready, wready, bwvalid, bresp, bid, aready,
+   modport master (input  awready, wready, bvalid, bresp, bid, arready,
 		   rvalid, rlast, rdata, rresp, rid,
 		   output awvalid, awaddr, awsize, awcache, awprot, awlock,
 		   awburst, awid, awlen, wvalid, wlast,
-		   wdata, wstrb, wid, bwready, arvalid, araddr, arcache,
+		   wdata, wstrb, wid, bready, arvalid, araddr, arcache,
 		   arprot, arlock, arsize, arburst, arid, arlen, rready);
 
-   modport slave  (output awready, wready, bwvalid, bresp, bid, aready,
+   modport slave  (output awready, wready, bvalid, bresp, bid, arready,
 		   rvalid, rlast, rdata, rresp, rid,
 		   input  awvalid, awaddr, awsize, awcache, awprot, awlock,
 		   awburst, awid, awlen, wvalid, wlast,
-		   wdata, wstrb, wid, bwready, arvalid, araddr, arcache,
+		   wdata, wstrb, wid, bready, arvalid, araddr, arcache,
 		   arprot, arlock, arsize, arburst, arid, arlen, rready);
 
 
