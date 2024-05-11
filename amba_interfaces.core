@@ -10,6 +10,7 @@ filesets:
       - src/apb_if.sv
       - src/asb_if.sv
       - src/atb_if.sv
+      - src/axi3_if.sv
       - src/axi4_if.sv
       - src/axi4_lite_if.sv
       - src/axis_if.sv
