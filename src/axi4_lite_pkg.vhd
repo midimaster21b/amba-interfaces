@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-package axi4_pkg is
+package axi4_lite_pkg is
   -----------------------------------------------------------------------------
   -- Full AXI4-Lite interface
   -----------------------------------------------------------------------------
@@ -87,5 +87,5 @@ package axi4_pkg is
   end record axi4_lite_mi_t;
 end package;
 
-package body axi4_pkg is
-end package body axi4_pkg;
+package body axi4_lite_pkg is
+end package body axi4_lite_pkg;
