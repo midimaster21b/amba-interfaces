@@ -30,15 +30,15 @@ interface axi4_if #(parameter
    logic [NUM_USER_BITS_P-1:0] wuser;
 
    // Write response channel
-   logic		       bwvalid;
-   logic		       bwready;
+   logic		       bvalid;
+   logic		       bready;
    logic [1:0]		       bresp;
    logic [NUM_ID_BITS_P-1:0]   bid;
    logic [NUM_USER_BITS_P-1:0] buser;
 
    // Read address channel
    logic		       arvalid;
-   logic		       aready;
+   logic		       arready;
    logic [(ADDR_BYTES*8)-1:0]  araddr;
    logic [3:0]		       arcache;
    logic [2:0]		       arprot;
@@ -60,19 +60,19 @@ interface axi4_if #(parameter
    logic [NUM_ID_BITS_P-1:0]   rid;
    logic [NUM_USER_BITS_P-1:0] ruser;
 
-   modport master (input  awready, wready, bwvalid, bresp, bid, buser, aready,
+   modport master (input  awready, wready, bvalid, bresp, bid, buser, arready,
 		   rvalid, rlast, rdata, rresp, rid, ruser,
 		   output awvalid, awaddr, awsize, awcache, awprot, awlock,
 		   awregion, awburst, awid, awlen, awqos, awuser, wvalid, wlast,
-		   wdata, wstrb, wuser, bwready, arvalid, araddr, arcache,
+		   wdata, wstrb, wuser, bready, arvalid, araddr, arcache,
 		   arprot, arlock, arregion, arsize, arburst, arid, arlen,
 		   arqos, aruser, rready);
 
-   modport slave  (output awready, wready, bwvalid, bresp, bid, buser, aready,
+   modport slave  (output awready, wready, bvalid, bresp, bid, buser, arready,
 		   rvalid, rlast, rdata, rresp, rid, ruser,
 		   input  awvalid, awaddr, awsize, awcache, awprot, awlock,
 		   awregion, awburst, awid, awlen, awqos, awuser, wvalid, wlast,
-		   wdata, wstrb, wuser, bwready, arvalid, araddr, arcache,
+		   wdata, wstrb, wuser, bready, arvalid, araddr, arcache,
 		   arprot, arlock, arregion, arsize, arburst, arid, arlen,
 		   arqos, aruser, rready);
 
