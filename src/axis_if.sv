@@ -9,8 +9,8 @@ interface axis_if #(parameter
    logic [(TDATA_BYTES*8)-1:0] tdata;
    logic [TDATA_BYTES-1:0]     tstrb;
    logic [TDATA_BYTES-1:0]     tkeep;
-   logic		       tlast;
-   logic		       tid;
+   logic                       tlast;
+   logic [TID_BITS-1:0]        tid;
    logic [TDEST_BITS-1:0]      tdest;
    logic [TUSER_BITS-1:0]      tuser;
 
