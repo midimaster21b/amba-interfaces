@@ -13,7 +13,13 @@
 // PPROT[0] - Normal or Privileged. Low for normal, high for privileged
 // PPROT[1] - Secure or Non-secure. Low for secure, high for non-secure
 // PPROT[2] - Data or Instruction. Low for data, high for instructions
-interface apb5_rev_d_if (input pclk, presetn);
+interface apb5_if_rev_d #(parameter
+			  ADDR_WIDTH=32,
+			  DATA_WIDTH=32,
+			  USER_REQ_WIDTH=32,
+			  USER_DATA_WIDTH=32,
+			  USER_RESP_WIDTH=32
+			  ) (input pclk, presetn);
 
    logic      [ADDR_WIDTH-1:0] paddr;   // address
    logic                 [2:0] pprot;   // protection
@@ -21,9 +27,9 @@ interface apb5_rev_d_if (input pclk, presetn);
    logic                       penable;
    logic                       pwrite;  // indicates write when high, read when low
    logic      [DATA_WIDTH-1:0] pwdata;
-   logic  [(DATA_WIDTH/8)-1:0] pstrb;   // Added in this revision
+   logic  [(DATA_WIDTH/8)-1:0] pstrb;
    logic                       pready;
-   logic                [31:0] prdata;
+   logic      [DATA_WIDTH-1:0] prdata;
    logic                       pslverr;
    logic                       pwakeup; // New in this revision
    logic  [USER_REQ_WIDTH-1:0] pauser;  // New in this revision
@@ -34,4 +40,4 @@ interface apb5_rev_d_if (input pclk, presetn);
    modport master (input  pready, prdata, pslverr, pruser, pbuser, output paddr, pprot, pselx, penable, pwrite, pwdata, pstrb, pwakeup, pauser, pwuser);
    modport slave  (output pready, prdata, pslverr, pruser, pbuser, input  paddr, pprot, pselx, penable, pwrite, pwdata, pstrb, pwakeup, pauser, pwuser);
 
-endinterface // apb5_rev_d_if
+endinterface // apb5_if_rev_d
