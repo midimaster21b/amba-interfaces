@@ -223,8 +223,8 @@ package axi3_pkg is
   -- Full AXI3 interface
   -----------------------------------------------------------------------------
   type axi3_rd_t is record
-    ar: axi3_r_t;
-    r: axi3_r_t;
+    ar: axi3_ar_t;
+    r:  axi3_r_t;
   end record;
 
   type axi3_wr_t is record
@@ -238,10 +238,49 @@ package axi3_pkg is
     w:  axi3_w_t;
     b:  axi3_b_t;
 
-    ar: axi3_r_t;
-    r: axi3_r_t;
+    ar: axi3_ar_t;
+    r:  axi3_r_t;
   end record;
 
+  type axi3_rd_m2s_t is record
+    ar: axi3_ar_m2s_t;
+    r:  axi3_r_m2s_t;
+  end record;
+
+  type axi3_rd_s2m_t is record
+    ar: axi3_ar_s2m_t;
+    r:  axi3_r_s2m_t;
+  end record;
+
+  type axi3_wr_m2s_t is record
+    aw: axi3_aw_m2s_t;
+    w:  axi3_w_m2s_t;
+    b:  axi3_b_m2s_t;
+  end record;
+
+  type axi3_wr_s2m_t is record
+    aw: axi3_aw_s2m_t;
+    w:  axi3_w_s2m_t;
+    b:  axi3_b_s2m_t;
+  end record;
+
+  type axi3_m2s_t is record
+    aw: axi3_aw_m2s_t;
+    w:  axi3_w_m2s_t;
+    b:  axi3_b_m2s_t;
+
+    ar: axi3_ar_m2s_t;
+    r:  axi3_r_m2s_t;
+  end record;
+
+  type axi3_s2m_t is record
+    aw: axi3_aw_s2m_t;
+    w:  axi3_w_s2m_t;
+    b:  axi3_b_s2m_t;
+
+    ar: axi3_ar_s2m_t;
+    r:  axi3_r_s2m_t;
+  end record;
 
   type axi3_rd_io_t is record
     arid    : std_logic_vector;

@@ -225,8 +225,8 @@ package axi4_pkg is
   -- Full AXI4 interface
   -----------------------------------------------------------------------------
   type axi4_rd_t is record
-    ar: axi4_r_t;
-    r: axi4_r_t;
+    ar: axi4_ar_t;
+    r:  axi4_r_t;
   end record;
 
   type axi4_wr_t is record
@@ -240,10 +240,49 @@ package axi4_pkg is
     w:  axi4_w_t;
     b:  axi4_b_t;
 
-    ar: axi4_r_t;
-    r: axi4_r_t;
+    ar: axi4_ar_t;
+    r:  axi4_r_t;
   end record;
 
+  type axi4_rd_m2s_t is record
+    ar: axi4_ar_m2s_t;
+    r:  axi4_r_m2s_t;
+  end record;
+
+  type axi4_rd_s2m_t is record
+    ar: axi4_ar_s2m_t;
+    r:  axi4_r_s2m_t;
+  end record;
+
+  type axi4_wr_m2s_t is record
+    aw: axi4_aw_m2s_t;
+    w:  axi4_w_m2s_t;
+    b:  axi4_b_m2s_t;
+  end record;
+
+  type axi4_wr_s2m_t is record
+    aw: axi4_aw_s2m_t;
+    w:  axi4_w_s2m_t;
+    b:  axi4_b_s2m_t;
+  end record;
+
+  type axi4_m2s_t is record
+    aw: axi4_aw_m2s_t;
+    w:  axi4_w_m2s_t;
+    b:  axi4_b_m2s_t;
+
+    ar: axi4_ar_m2s_t;
+    r:  axi4_r_m2s_t;
+  end record;
+
+  type axi4_s2m_t is record
+    aw: axi4_aw_s2m_t;
+    w:  axi4_w_s2m_t;
+    b:  axi4_b_s2m_t;
+
+    ar: axi4_ar_s2m_t;
+    r:  axi4_r_s2m_t;
+  end record;
 
   type axi4_rd_io_t is record
     arid    : std_logic_vector;
