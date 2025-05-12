@@ -76,7 +76,7 @@ package axi4_pkg is
   -----------------------------------------------------------------------------
   -- Full AXI4 write data(W) interface
   -----------------------------------------------------------------------------
-  type axi4_m2s_w_t is record
+  type axi4_w_m2s_t is record
     -- wid     : std_logic_vector; -- AXI3 only
     wdata   : std_logic_vector;
     wstrb   : std_logic_vector;
@@ -87,7 +87,7 @@ package axi4_pkg is
     wvalid  : std_logic;
   end record;
 
-  type axi4_w_m2s_t is record
+  type axi4_w_s2m_t is record
     wready  : std_logic;
   end record;
 
@@ -116,7 +116,7 @@ package axi4_pkg is
     bready : std_logic;
   end record;
 
-  type axi4_b_m2s_t is record
+  type axi4_b_s2m_t is record
     bid    : std_logic_vector;
     bresp  : std_logic_vector(1 downto 0);
     buser  : std_logic_vector; -- AXI4 only
@@ -199,7 +199,7 @@ package axi4_pkg is
     rvalid  : std_logic;
   end record;
 
-  type axi4_r_m2s_t is record
+  type axi4_r_s2m_t is record
     rready  : std_logic;
   end record;
 

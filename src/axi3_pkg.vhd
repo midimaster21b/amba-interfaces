@@ -113,7 +113,7 @@ package axi3_pkg is
     bready : std_logic;
   end record;
 
-  type axi3_b_m2s_t is record
+  type axi3_b_s2m_t is record
     bid    : std_logic_vector;
     bresp  : std_logic_vector(1 downto 0);
     -- buser  : std_logic_vector; -- AXI4 only
