@@ -1,4 +1,4 @@
-# Advanced eXtensible Interface 3 (AXI4)
+# Advanced eXtensible Interface 3 (AXI3)
 
 ## Write Channel
 
