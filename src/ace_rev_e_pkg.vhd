@@ -1,6 +1,6 @@
 -- AMBA ACE Protocol
--- Pulled from document "ARM IHI 0022D" (ID110411)
--- October 28, 2011
+-- Pulled from document "ARM IHI 0022E" (ID033013)
+-- February 22, 2013
 --
 -- Naming schemes
 -- ace_aw_m2s_t - directional AW signals
@@ -18,11 +18,14 @@
 -- Supported data widths (according to protocol):
 -- 8, 16, 32, 64, 128, 256, 512, or 1024 bits wide
 
+-- NOTE: The only signal change in this revision is the addition of the signal:
+--       - awunique
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-package ace_pkg is
+package ace_rev_e_pkg is
   constant BURST_LENGTH_C : integer := 8;
 
   -- AxBAR constants
@@ -76,6 +79,7 @@ package ace_pkg is
     awdomain : std_logic_vector(1 downto 0); -- ACE Only
     awsnoop  : std_logic_vector(2 downto 0); -- ACE Only
     awbar    : std_logic_vector(2 downto 0); -- ACE Only
+    awunique : std_logic;                    -- ACE rev E only 
 
     awvalid : std_logic;
   end record;
@@ -107,6 +111,7 @@ package ace_pkg is
     awdomain : std_logic_vector(1 downto 0); -- ACE Only
     awsnoop  : std_logic_vector(2 downto 0); -- ACE Only
     awbar    : std_logic_vector(2 downto 0); -- ACE Only
+    awunique : std_logic;                    -- ACE rev E only 
 
     awready : std_logic;
   end record;
@@ -497,6 +502,7 @@ package ace_pkg is
     awdomain : std_logic_vector(1 downto 0); -- ACE Only
     awsnoop  : std_logic_vector(2 downto 0); -- ACE Only
     awbar    : std_logic_vector(2 downto 0); -- ACE Only
+    awunique : std_logic;                    -- ACE rev E only 
 
     awready : std_logic;
     wdata   : std_logic_vector;
@@ -588,6 +594,7 @@ package ace_pkg is
     awdomain : std_logic_vector(1 downto 0); -- ACE Only
     awsnoop  : std_logic_vector(2 downto 0); -- ACE Only
     awbar    : std_logic_vector(2 downto 0); -- ACE Only
+    awunique : std_logic;                    -- ACE rev E only 
 
     awready : std_logic;
     wdata   : std_logic_vector;
@@ -627,5 +634,5 @@ package ace_pkg is
   end record;
 end package;
 
-package body ace_pkg is
-end package body ace_pkg;
+package body ace_rev_e_pkg is
+end package body ace_rev_e_pkg;

@@ -75,7 +75,7 @@ package ace_lite_pkg is
 
     awdomain : std_logic_vector(1 downto 0); -- ACE Only
     awsnoop  : std_logic_vector(2 downto 0); -- ACE Only
-    awsbar   : std_logic_vector(2 downto 0); -- ACE Only
+    awbar    : std_logic_vector(2 downto 0); -- ACE Only
 
     awvalid : std_logic;
   end record;
@@ -106,7 +106,7 @@ package ace_lite_pkg is
 
     awdomain : std_logic_vector(1 downto 0); -- ACE Only
     awsnoop  : std_logic_vector(2 downto 0); -- ACE Only
-    awsbar   : std_logic_vector(2 downto 0); -- ACE Only
+    awbar    : std_logic_vector(2 downto 0); -- ACE Only
 
     awready : std_logic;
   end record;
@@ -499,7 +499,7 @@ package ace_lite_pkg is
 
     awdomain : std_logic_vector(1 downto 0); -- ACE Only
     awsnoop  : std_logic_vector(2 downto 0); -- ACE Only
-    awsbar   : std_logic_vector(2 downto 0); -- ACE Only
+    awbar    : std_logic_vector(2 downto 0); -- ACE Only
 
     awready : std_logic;
     wdata   : std_logic_vector;
@@ -591,7 +591,7 @@ package ace_lite_pkg is
 
     awdomain : std_logic_vector(1 downto 0); -- ACE Only
     awsnoop  : std_logic_vector(2 downto 0); -- ACE Only
-    awsbar   : std_logic_vector(2 downto 0); -- ACE Only
+    awbar    : std_logic_vector(2 downto 0); -- ACE Only
 
     awready : std_logic;
     wdata   : std_logic_vector;

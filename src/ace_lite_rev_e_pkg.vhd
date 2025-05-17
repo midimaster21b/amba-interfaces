@@ -18,11 +18,14 @@
 -- Supported data widths (according to protocol):
 -- 8, 16, 32, 64, 128, 256, 512, or 1024 bits wide
 
+-- NOTE: The only signal change in this revision is the addition of the signal:
+--       - awunique
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-package ace_pkg is
+package ace_lite_rev_e_pkg is
   constant BURST_LENGTH_C : integer := 8;
 
   -- AxBAR constants
@@ -59,7 +62,7 @@ package ace_pkg is
   -----------------------------------------------------------------------------
   -- Full ACE address write(AW) interface
   -----------------------------------------------------------------------------
-  type ace_aw_m2s_t is record
+  type ace_lite_aw_m2s_t is record
     awid    : std_logic_vector;
     awaddr  : std_logic_vector;
     awlen   : std_logic_vector(BURST_LENGTH_C-1 downto 0);  -- burst length in beats
@@ -76,20 +79,21 @@ package ace_pkg is
     awdomain : std_logic_vector(1 downto 0); -- ACE Only
     awsnoop  : std_logic_vector(2 downto 0); -- ACE Only
     awbar    : std_logic_vector(2 downto 0); -- ACE Only
+    awunique : std_logic;                    -- ACE rev E only 
 
     awvalid : std_logic;
   end record;
 
-  type ace_aw_s2m_t is record
+  type ace_lite_aw_s2m_t is record
     awready : std_logic;
   end record;
 
-  type ace_aw_t is record
-    m2s : ace_aw_m2s_t;
-    s2m : ace_aw_s2m_t;
+  type ace_lite_aw_t is record
+    m2s : ace_lite_aw_m2s_t;
+    s2m : ace_lite_aw_s2m_t;
   end record;
 
-  type ace_aw_io_t is record
+  type ace_lite_aw_io_t is record
     awid    : std_logic_vector;
     awaddr  : std_logic_vector;
     awlen   : std_logic_vector(BURST_LENGTH_C-1 downto 0);  -- burst length in beats
@@ -107,6 +111,7 @@ package ace_pkg is
     awdomain : std_logic_vector(1 downto 0); -- ACE Only
     awsnoop  : std_logic_vector(2 downto 0); -- ACE Only
     awbar    : std_logic_vector(2 downto 0); -- ACE Only
+    awunique : std_logic;                    -- ACE rev E only 
 
     awready : std_logic;
   end record;
@@ -115,7 +120,7 @@ package ace_pkg is
   -----------------------------------------------------------------------------
   -- Full ACE write data(W) interface
   -----------------------------------------------------------------------------
-  type ace_w_m2s_t is record
+  type ace_lite_w_m2s_t is record
     wdata   : std_logic_vector;
     wstrb   : std_logic_vector;
     wlast   : std_logic;
@@ -125,16 +130,16 @@ package ace_pkg is
     wvalid  : std_logic;
   end record;
 
-  type ace_w_s2m_t is record
+  type ace_lite_w_s2m_t is record
     wready  : std_logic;
   end record;
 
-  type ace_w_t is record
-    m2s : ace_w_m2s_t;
-    s2m : ace_w_s2m_t;
+  type ace_lite_w_t is record
+    m2s : ace_lite_w_m2s_t;
+    s2m : ace_lite_w_s2m_t;
   end record;
 
-  type ace_w_io_t is record
+  type ace_lite_w_io_t is record
     wdata   : std_logic_vector;
     wstrb   : std_logic_vector;
     wlast   : std_logic;
@@ -149,26 +154,26 @@ package ace_pkg is
   -----------------------------------------------------------------------------
   -- Full ACE write response(B) interface
   -----------------------------------------------------------------------------
-  type ace_b_m2s_t is record
+  type ace_lite_b_m2s_t is record
     bready : std_logic;
-    wack   : std_logic; -- ACE only
+    -- wack   : std_logic; -- ACE only (not in lite)
   end record;
 
-  type ace_b_s2m_t is record
+  type ace_lite_b_s2m_t is record
     bid    : std_logic_vector;
     bresp  : std_logic_vector(1 downto 0);
     buser  : std_logic_vector;
     bvalid : std_logic;
   end record;
 
-  type ace_b_t is record
-    m2s : ace_b_m2s_t;
-    s2m : ace_b_s2m_t;
+  type ace_lite_b_t is record
+    m2s : ace_lite_b_m2s_t;
+    s2m : ace_lite_b_s2m_t;
   end record;
 
-  type ace_b_io_t is record
+  type ace_lite_b_io_t is record
     bready : std_logic;
-    wack   : std_logic; -- ACE only
+    -- wack   : std_logic; -- ACE only (not in lite)
     bid    : std_logic_vector;
     bresp  : std_logic_vector(1 downto 0);
     buser  : std_logic_vector;
@@ -179,7 +184,7 @@ package ace_pkg is
   -----------------------------------------------------------------------------
   -- Full ACE address read(AR) interface
   -----------------------------------------------------------------------------
-  type ace_ar_m2s_t is record
+  type ace_lite_ar_m2s_t is record
     arid    : std_logic_vector;
     araddr  : std_logic_vector;
     arlen   : std_logic_vector(BURST_LENGTH_C-1 downto 0);  -- burst length in beats
@@ -200,16 +205,16 @@ package ace_pkg is
     arvalid : std_logic;
   end record;
 
-  type ace_ar_s2m_t is record
+  type ace_lite_ar_s2m_t is record
     arready : std_logic;
   end record;
 
-  type ace_ar_t is record
-    m2s : ace_ar_m2s_t;
-    s2m : ace_ar_s2m_t;
+  type ace_lite_ar_t is record
+    m2s : ace_lite_ar_m2s_t;
+    s2m : ace_lite_ar_s2m_t;
   end record;
 
-  type ace_ar_io_t is record
+  type ace_lite_ar_io_t is record
     arid    : std_logic_vector;
     araddr  : std_logic_vector;
     arlen   : std_logic_vector(BURST_LENGTH_C-1 downto 0);  -- burst length in beats
@@ -235,218 +240,221 @@ package ace_pkg is
   -----------------------------------------------------------------------------
   -- Full ACE read data(R) interface
   -----------------------------------------------------------------------------
-  type ace_r_m2s_t is record
+  type ace_lite_r_m2s_t is record
     rid     : std_logic_vector;
     rdata   : std_logic_vector;
-    rresp   : std_logic_vector(3 downto 0); -- ACE only - two additional bits
+    rresp   : std_logic_vector(1 downto 0); -- ACE only - two additional bits (not in lite)
     rlast   : std_logic;
 
     ruser   : std_logic_vector;
 
     rvalid  : std_logic;
 
-    rack    : std_logic; -- ACE Only
+    -- rack    : std_logic; -- ACE Only (not in lite)
   end record;
 
-  type ace_r_s2m_t is record
+  type ace_lite_r_s2m_t is record
     rready  : std_logic;
   end record;
 
-  type ace_r_t is record
-    m2s : ace_r_m2s_t;
-    s2m : ace_r_s2m_t;
+  type ace_lite_r_t is record
+    m2s : ace_lite_r_m2s_t;
+    s2m : ace_lite_r_s2m_t;
   end record;
 
-  type ace_r_io_t is record
+  type ace_lite_r_io_t is record
     rid     : std_logic_vector;
     rdata   : std_logic_vector;
-    rresp   : std_logic_vector(3 downto 0); -- ACE only - two additional bits
+    rresp   : std_logic_vector(1 downto 0); -- ACE only - two additional bits (not in lite)
     rlast   : std_logic;
 
     ruser   : std_logic_vector;
-    rack    : std_logic; -- ACE Only
+    -- rack    : std_logic; -- ACE Only (not in lite)
 
     rvalid  : std_logic;
     rready  : std_logic;
   end record;
 
 
-  -----------------------------------------------------------------------------
-  -- Full ACE snoop address(AC) interface (Optional)
-  -----------------------------------------------------------------------------
-  type ace_ac_m2s_t is record
-    acready : std_logic;
-  end record;
+  -- -----------------------------------------------------------------------------
+  -- -- Full ACE snoop address(AC) interface (Optional) (not in lite)
+  -- -----------------------------------------------------------------------------
+  -- type ace_lite_ac_m2s_t is record
+  --   acready : std_logic;
+  -- end record;
 
-  type ace_ac_s2m_t is record
-    acvalid : std_logic;
-    acaddr  : std_logic_vector;
-    acsnoop : std_logic_vector(3 downto 0);
-    acprot  : std_logic_vector(2 downto 0);
-  end record;
+  -- type ace_lite_ac_s2m_t is record
+  --   acvalid : std_logic;
+  --   acaddr  : std_logic_vector;
+  --   acsnoop : std_logic_vector(3 downto 0);
+  --   acprot  : std_logic_vector(2 downto 0);
+  -- end record;
 
-  type ace_ac_t is record
-    m2s : ace_ac_m2s_t;
-    s2m : ace_ac_s2m_t;
-  end record;
+  -- type ace_lite_ac_t is record
+  --   m2s : ace_lite_ac_m2s_t;
+  --   s2m : ace_lite_ac_s2m_t;
+  -- end record;
 
-  type ace_ac_io_t is record
-    acready : std_logic;
+  -- type ace_lite_ac_io_t is record
+  --   acready : std_logic;
 
-    acvalid : std_logic;
-    acaddr  : std_logic_vector;
-    acsnoop : std_logic_vector(3 downto 0);
-    acprot  : std_logic_vector(2 downto 0);
-  end record;
-
-
-  -----------------------------------------------------------------------------
-  -- Full ACE snoop response(CR) interface (Optional)
-  -----------------------------------------------------------------------------
-  type ace_cr_m2s_t is record
-    crvalid : std_logic;
-    crresp  : std_logic_vector(4 downto 0);
-  end record;
-
-  type ace_cr_s2m_t is record
-    crready : std_logic;
-  end record;
-
-  type ace_cr_t is record
-    m2s : ace_cr_m2s_t;
-    s2m : ace_cr_s2m_t;
-  end record;
-
-  type ace_cr_io_t is record
-    crvalid : std_logic;
-    crresp  : std_logic_vector(4 downto 0);
-
-    crready : std_logic;
-  end record;
+  --   acvalid : std_logic;
+  --   acaddr  : std_logic_vector;
+  --   acsnoop : std_logic_vector(3 downto 0);
+  --   acprot  : std_logic_vector(2 downto 0);
+  -- end record;
 
 
-  -----------------------------------------------------------------------------
-  -- Full ACE snoop data(CD) interface (Optional)
-  -----------------------------------------------------------------------------
-  type ace_cd_m2s_t is record
-    cdvalid : std_logic;
-    cddata  : std_logic_vector;
-    cdlast  : std_logic;
-  end record;
+  -- -----------------------------------------------------------------------------
+  -- -- Full ACE snoop response(CR) interface (Optional) (not in lite)
+  -- -----------------------------------------------------------------------------
+  -- type ace_lite_cr_m2s_t is record
+  --   crvalid : std_logic;
+  --   crresp  : std_logic_vector(4 downto 0);
+  -- end record;
 
-  type ace_cd_s2m_t is record
-    cdready : std_logic;
-  end record;
+  -- type ace_lite_cr_s2m_t is record
+  --   crready : std_logic;
+  -- end record;
 
-  type ace_cd_t is record
-    m2s : ace_cd_m2s_t;
-    s2m : ace_cd_s2m_t;
-  end record;
+  -- type ace_lite_cr_t is record
+  --   m2s : ace_lite_cr_m2s_t;
+  --   s2m : ace_lite_cr_s2m_t;
+  -- end record;
 
-  type ace_cd_io_t is record
-    cdvalid : std_logic;
-    cddata  : std_logic_vector;
-    cdlast  : std_logic;
+  -- type ace_lite_cr_io_t is record
+  --   crvalid : std_logic;
+  --   crresp  : std_logic_vector(4 downto 0);
 
-    cdready : std_logic;
-  end record;
+  --   crready : std_logic;
+  -- end record;
+
+
+  -- -----------------------------------------------------------------------------
+  -- -- Full ACE snoop data(CD) interface (Optional) (not in lite)
+  -- -----------------------------------------------------------------------------
+  -- type ace_lite_cd_m2s_t is record
+  --   cdvalid : std_logic;
+  --   cddata  : std_logic_vector;
+  --   cdlast  : std_logic;
+  -- end record;
+
+  -- type ace_lite_cd_s2m_t is record
+  --   cdready : std_logic;
+  -- end record;
+
+  -- type ace_lite_cd_t is record
+  --   m2s : ace_lite_cd_m2s_t;
+  --   s2m : ace_lite_cd_s2m_t;
+  -- end record;
+
+  -- type ace_lite_cd_io_t is record
+  --   cdvalid : std_logic;
+  --   cddata  : std_logic_vector;
+  --   cdlast  : std_logic;
+
+  --   cdready : std_logic;
+  -- end record;
 
 
 
   -----------------------------------------------------------------------------
   -- Full ACE interface
   -----------------------------------------------------------------------------
-  type ace_rd_t is record
-    ar: ace_ar_t;
-    r:  ace_r_t;
+  type ace_lite_rd_t is record
+    ar: ace_lite_ar_t;
+    r:  ace_lite_r_t;
   end record;
 
-  type ace_wr_t is record
-    aw: ace_aw_t;
-    w:  ace_w_t;
-    b:  ace_b_t;
+  type ace_lite_wr_t is record
+    aw: ace_lite_aw_t;
+    w:  ace_lite_w_t;
+    b:  ace_lite_b_t;
   end record;
 
-  type ace_snoop_t is record
-    ac: ace_ac_t;
-    cr: ace_cr_t;
-    cd: ace_cd_t;
+  -- -- (not in lite)
+  -- type ace_lite_snoop_t is record
+  --   ac: ace_lite_ac_t;
+  --   cr: ace_lite_cr_t;
+  --   cd: ace_lite_cd_t;
+  -- end record;
+
+  type ace_lite_t is record
+    aw: ace_lite_aw_t;
+    w:  ace_lite_w_t;
+    b:  ace_lite_b_t;
+
+    ar: ace_lite_ar_t;
+    r:  ace_lite_r_t;
+
+    -- ac: ace_lite_ac_t; (not in lite)
+    -- cr: ace_lite_cr_t; (not in lite)
+    -- cd: ace_lite_cd_t; (not in lite)
   end record;
 
-  type ace_t is record
-    aw: ace_aw_t;
-    w:  ace_w_t;
-    b:  ace_b_t;
-
-    ar: ace_ar_t;
-    r:  ace_r_t;
-
-    ac: ace_ac_t;
-    cr: ace_cr_t;
-    cd: ace_cd_t;
+  type ace_lite_rd_m2s_t is record
+    ar: ace_lite_ar_m2s_t;
+    r:  ace_lite_r_m2s_t;
   end record;
 
-  type ace_rd_m2s_t is record
-    ar: ace_ar_m2s_t;
-    r:  ace_r_m2s_t;
+  type ace_lite_rd_s2m_t is record
+    ar: ace_lite_ar_s2m_t;
+    r:  ace_lite_r_s2m_t;
   end record;
 
-  type ace_rd_s2m_t is record
-    ar: ace_ar_s2m_t;
-    r:  ace_r_s2m_t;
+  type ace_lite_wr_m2s_t is record
+    aw: ace_lite_aw_m2s_t;
+    w:  ace_lite_w_m2s_t;
+    b:  ace_lite_b_m2s_t;
   end record;
 
-  type ace_wr_m2s_t is record
-    aw: ace_aw_m2s_t;
-    w:  ace_w_m2s_t;
-    b:  ace_b_m2s_t;
+  type ace_lite_wr_s2m_t is record
+    aw: ace_lite_aw_s2m_t;
+    w:  ace_lite_w_s2m_t;
+    b:  ace_lite_b_s2m_t;
   end record;
 
-  type ace_wr_s2m_t is record
-    aw: ace_aw_s2m_t;
-    w:  ace_w_s2m_t;
-    b:  ace_b_s2m_t;
+  -- (not in lite)
+  -- type ace_lite_snoop_m2s_t is record
+  --   ac: ace_lite_ac_m2s_t;
+  --   cr: ace_lite_cr_m2s_t;
+  --   cd: ace_lite_cd_m2s_t;
+  -- end record;
+
+  -- (not in lite)
+  -- type ace_lite_snoop_s2m_t is record
+  --   ac: ace_lite_ac_s2m_t;
+  --   cr: ace_lite_cr_s2m_t;
+  --   cd: ace_lite_cd_s2m_t;
+  -- end record;
+
+  type ace_lite_m2s_t is record
+    aw: ace_lite_aw_m2s_t;
+    w:  ace_lite_w_m2s_t;
+    b:  ace_lite_b_m2s_t;
+
+    ar: ace_lite_ar_m2s_t;
+    r:  ace_lite_r_m2s_t;
+
+    -- ac: ace_lite_ac_m2s_t; (not in lite)
+    -- cr: ace_lite_cr_m2s_t; (not in lite)
+    -- cd: ace_lite_cd_m2s_t; (not in lite)
   end record;
 
-  type ace_snoop_m2s_t is record
-    ac: ace_ac_m2s_t;
-    cr: ace_cr_m2s_t;
-    cd: ace_cd_m2s_t;
+  type ace_lite_s2m_t is record
+    aw: ace_lite_aw_s2m_t;
+    w:  ace_lite_w_s2m_t;
+    b:  ace_lite_b_s2m_t;
+
+    ar: ace_lite_ar_s2m_t;
+    r:  ace_lite_r_s2m_t;
+
+    -- ac: ace_lite_ac_s2m_t; -- (not in lite)
+    -- cr: ace_lite_cr_s2m_t; -- (not in lite)
+    -- cd: ace_lite_cd_s2m_t; -- (not in lite)
   end record;
 
-  type ace_snoop_s2m_t is record
-    ac: ace_ac_s2m_t;
-    cr: ace_cr_s2m_t;
-    cd: ace_cd_s2m_t;
-  end record;
-
-  type ace_m2s_t is record
-    aw: ace_aw_m2s_t;
-    w:  ace_w_m2s_t;
-    b:  ace_b_m2s_t;
-
-    ar: ace_ar_m2s_t;
-    r:  ace_r_m2s_t;
-
-    ac: ace_ac_m2s_t;
-    cr: ace_cr_m2s_t;
-    cd: ace_cd_m2s_t;
-  end record;
-
-  type ace_s2m_t is record
-    aw: ace_aw_s2m_t;
-    w:  ace_w_s2m_t;
-    b:  ace_b_s2m_t;
-
-    ar: ace_ar_s2m_t;
-    r:  ace_r_s2m_t;
-
-    ac: ace_ac_s2m_t;
-    cr: ace_cr_s2m_t;
-    cd: ace_cd_s2m_t;
-  end record;
-
-  type ace_rd_io_t is record
+  type ace_lite_rd_io_t is record
     arid    : std_logic_vector;
     araddr  : std_logic_vector;
     arlen   : std_logic_vector(BURST_LENGTH_C-1 downto 0);  -- burst length in beats
@@ -469,17 +477,17 @@ package ace_pkg is
 
     rid     : std_logic_vector;
     rdata   : std_logic_vector;
-    rresp   : std_logic_vector(3 downto 0);  -- ACE only - two additional bits
+    rresp   : std_logic_vector(1 downto 0);
     rlast   : std_logic;
 
     ruser   : std_logic_vector;
-    rack    : std_logic; -- ACE Only
+    -- rack    : std_logic; -- ACE Only (not in lite)
 
     rvalid  : std_logic;
     rready  : std_logic;
   end record;
 
-  type ace_wr_io_t is record
+  type ace_lite_wr_io_t is record
     awid    : std_logic_vector;
     awaddr  : std_logic_vector;
     awlen   : std_logic_vector(BURST_LENGTH_C-1 downto 0);  -- burst length in beats
@@ -497,6 +505,7 @@ package ace_pkg is
     awdomain : std_logic_vector(1 downto 0); -- ACE Only
     awsnoop  : std_logic_vector(2 downto 0); -- ACE Only
     awbar    : std_logic_vector(2 downto 0); -- ACE Only
+    awunique : std_logic;                    -- ACE rev E only 
 
     awready : std_logic;
     wdata   : std_logic_vector;
@@ -509,35 +518,36 @@ package ace_pkg is
     wready  : std_logic;
 
     bready : std_logic;
-    wack   : std_logic; -- ACE only
+    -- wack   : std_logic; -- ACE only (not in lite)
     bid    : std_logic_vector;
     bresp  : std_logic_vector(1 downto 0);
     buser  : std_logic_vector;
     bvalid : std_logic;
   end record;
 
-  type ace_snoop_io_t is record
-    acready : std_logic;
+  -- (not in lite)
+  -- type ace_lite_snoop_io_t is record
+  --   acready : std_logic;
 
-    acvalid : std_logic;
-    acaddr  : std_logic_vector;
-    acsnoop : std_logic_vector(3 downto 0);
-    acprot  : std_logic_vector(2 downto 0);
+  --   acvalid : std_logic;
+  --   acaddr  : std_logic_vector;
+  --   acsnoop : std_logic_vector(3 downto 0);
+  --   acprot  : std_logic_vector(2 downto 0);
 
-    crvalid : std_logic;
-    crresp  : std_logic_vector(4 downto 0);
+  --   crvalid : std_logic;
+  --   crresp  : std_logic_vector(4 downto 0);
 
-    crready : std_logic;
+  --   crready : std_logic;
 
-    cdvalid : std_logic;
-    cddata  : std_logic_vector;
-    cdlast  : std_logic;
+  --   cdvalid : std_logic;
+  --   cddata  : std_logic_vector;
+  --   cdlast  : std_logic;
 
-    cdready : std_logic;
-  end record;
+  --   cdready : std_logic;
+  -- end record;
 
 
-  type ace_io_t is record
+  type ace_lite_io_t is record
     -- Read
     arid    : std_logic_vector;
     araddr  : std_logic_vector;
@@ -561,11 +571,11 @@ package ace_pkg is
 
     rid     : std_logic_vector;
     rdata   : std_logic_vector;
-    rresp   : std_logic_vector(3 downto 0);  -- ACE only - two additional bits
+    rresp   : std_logic_vector(1 downto 0);
     rlast   : std_logic;
 
     ruser   : std_logic_vector;
-    rack    : std_logic; -- ACE Only
+    -- rack    : std_logic; -- ACE Only (not in lite)
 
     rvalid  : std_logic;
     rready  : std_logic;
@@ -588,6 +598,7 @@ package ace_pkg is
     awdomain : std_logic_vector(1 downto 0); -- ACE Only
     awsnoop  : std_logic_vector(2 downto 0); -- ACE Only
     awbar    : std_logic_vector(2 downto 0); -- ACE Only
+    awunique : std_logic;                    -- ACE rev E only 
 
     awready : std_logic;
     wdata   : std_logic_vector;
@@ -600,32 +611,32 @@ package ace_pkg is
     wready  : std_logic;
 
     bready : std_logic;
-    wack   : std_logic; -- ACE only
+    -- wack   : std_logic; -- ACE only (not in lite)
     bid    : std_logic_vector;
     bresp  : std_logic_vector(1 downto 0);
     buser  : std_logic_vector;
     bvalid : std_logic;
 
-    -- Snoop
-    acready : std_logic;
+    -- -- Snoop (not in lite)
+    -- acready : std_logic;
 
-    acvalid : std_logic;
-    acaddr  : std_logic_vector;
-    acsnoop : std_logic_vector(3 downto 0);
-    acprot  : std_logic_vector(2 downto 0);
+    -- acvalid : std_logic;
+    -- acaddr  : std_logic_vector;
+    -- acsnoop : std_logic_vector(3 downto 0);
+    -- acprot  : std_logic_vector(2 downto 0);
 
-    crvalid : std_logic;
-    crresp  : std_logic_vector(4 downto 0);
+    -- crvalid : std_logic;
+    -- crresp  : std_logic_vector(4 downto 0);
 
-    crready : std_logic;
+    -- crready : std_logic;
 
-    cdvalid : std_logic;
-    cddata  : std_logic_vector;
-    cdlast  : std_logic;
+    -- cdvalid : std_logic;
+    -- cddata  : std_logic_vector;
+    -- cdlast  : std_logic;
 
-    cdready : std_logic;
+    -- cdready : std_logic;
   end record;
 end package;
 
-package body ace_pkg is
-end package body ace_pkg;
+package body ace_lite_rev_e_pkg is
+end package body ace_lite_rev_e_pkg;
