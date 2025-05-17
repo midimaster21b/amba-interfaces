@@ -73,12 +73,12 @@ package axi4_lite_pkg is
   -- Full AXI4-Lite write response(B) interface
   -----------------------------------------------------------------------------
   type axi4_lite_b_m2s_t is record
-    bvalid   : std_logic;
-    bresp    : std_logic_vector;
+    bready   : std_logic;
   end record;
 
   type axi4_lite_b_s2m_t is record
-    bready   : std_logic;
+    bvalid   : std_logic;
+    bresp    : std_logic_vector;
   end record;
 
   type axi4_lite_b_t is record
@@ -123,13 +123,13 @@ package axi4_lite_pkg is
   -- Full AXI4-Lite read data(AR) interface
   -----------------------------------------------------------------------------
   type axi4_lite_r_m2s_t is record
-    rvalid   : std_logic;
-    rdata    : std_logic_vector;
-    rresp    : std_logic_vector;
+    rready   : std_logic;
   end record;
 
   type axi4_lite_r_s2m_t is record
-    rready   : std_logic;
+    rvalid   : std_logic;
+    rdata    : std_logic_vector;
+    rresp    : std_logic_vector;
   end record;
 
   type axi4_lite_r_t is record
