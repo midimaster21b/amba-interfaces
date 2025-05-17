@@ -22,7 +22,7 @@ package axi4_lite_pkg is
     -- Write address channel
     awvalid  : std_logic;
     awaddr   : std_logic_vector;
-    awprot   : std_logic_vector;
+    awprot   : std_logic_vector(2 downto 0);
   end record;
 
   type axi4_lite_aw_s2m_t is record
@@ -39,7 +39,7 @@ package axi4_lite_pkg is
     awvalid  : std_logic;
     awready  : std_logic;
     awaddr   : std_logic_vector;
-    awprot   : std_logic_vector;
+    awprot   : std_logic_vector(2 downto 0);
   end record;
 
 
@@ -78,7 +78,7 @@ package axi4_lite_pkg is
 
   type axi4_lite_b_s2m_t is record
     bvalid   : std_logic;
-    bresp    : std_logic_vector;
+    bresp    : std_logic_vector(1 downto 0);
   end record;
 
   type axi4_lite_b_t is record
@@ -89,7 +89,7 @@ package axi4_lite_pkg is
   type axi4_lite_b_io_t is record
     bvalid   : std_logic;
     bready   : std_logic;
-    bresp    : std_logic_vector;
+    bresp    : std_logic_vector(1 downto 0);
   end record;
 
 
@@ -99,7 +99,7 @@ package axi4_lite_pkg is
   type axi4_lite_ar_m2s_t is record
     arvalid  : std_logic;
     araddr   : std_logic_vector;
-    arprot   : std_logic_vector;
+    arprot   : std_logic_vector(2 downto 0);
   end record;
 
   type axi4_lite_ar_s2m_t is record
@@ -115,7 +115,7 @@ package axi4_lite_pkg is
     arvalid  : std_logic;
     arready  : std_logic;
     araddr   : std_logic_vector;
-    arprot   : std_logic_vector;
+    arprot   : std_logic_vector(2 downto 0);
   end record;
 
 
@@ -129,7 +129,7 @@ package axi4_lite_pkg is
   type axi4_lite_r_s2m_t is record
     rvalid   : std_logic;
     rdata    : std_logic_vector;
-    rresp    : std_logic_vector;
+    rresp    : std_logic_vector(1 downto 0);
   end record;
 
   type axi4_lite_r_t is record
@@ -141,7 +141,7 @@ package axi4_lite_pkg is
     rvalid   : std_logic;
     rready   : std_logic;
     rdata    : std_logic_vector;
-    rresp    : std_logic_vector;
+    rresp    : std_logic_vector(1 downto 0);
   end record;
 
 
@@ -213,7 +213,7 @@ package axi4_lite_pkg is
     awvalid  : std_logic;
     awready  : std_logic;
     awaddr   : std_logic_vector;
-    awprot   : std_logic_vector;
+    awprot   : std_logic_vector(2 downto 0);
 
     -- Write data channel
     wvalid   : std_logic;
@@ -224,19 +224,19 @@ package axi4_lite_pkg is
     -- Write response channel
     bvalid   : std_logic;
     bready   : std_logic;
-    bresp    : std_logic_vector;
+    bresp    : std_logic_vector(1 downto 0);
 
     -- Read address channel
     arvalid  : std_logic;
     arready  : std_logic;
     araddr   : std_logic_vector;
-    arprot   : std_logic_vector;
+    arprot   : std_logic_vector(2 downto 0);
 
     -- Read data channel
     rvalid   : std_logic;
     rready   : std_logic;
     rdata    : std_logic_vector;
-    rresp    : std_logic_vector;
+    rresp    : std_logic_vector(1 downto 0);
   end record axi4_lite_t;
 
 end package;
