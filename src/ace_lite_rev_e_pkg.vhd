@@ -1,6 +1,6 @@
 -- AMBA ACE Protocol
--- Pulled from document "ARM IHI 0022D" (ID110411)
--- October 28, 2011
+-- Pulled from document "ARM IHI 0022E" (ID033013)
+-- February 22, 2013
 --
 -- Naming schemes
 -- ace_aw_m2s_t - directional AW signals
