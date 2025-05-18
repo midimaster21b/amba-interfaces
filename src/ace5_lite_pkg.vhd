@@ -19,39 +19,37 @@ package ace5_lite_pkg is
   -- Full ACE5-Lite address write(AW) interface
   -----------------------------------------------------------------------------
   type ace5_lite_aw_m2s_t is record
-    awvalid     : std_logic;
-    awid        : std_logic_vector;
-    awaddr      : std_logic_vector;
-    awregion    : std_logic_vector(3 downto 0);
-    awlen       : std_logic_vector(7 downto 0);
-    awsize      : std_logic_vector(2 downto 0);
-    awburst     : std_logic_vector(1 downto 0);
-    awlock      : std_logic;
-    awcache     : std_logic_vector(3 downto 0);
-    awprot      : std_logic_vector(2 downto 0);
-    awqos       : std_logic_vector(3 downto 0);
-    awuser      : std_logic_vector;
-    awdomain    : std_logic_vector(1 downto 0);
-    awsnoop     : std_logic_vector(2 downto 0); -- 4 wide for other versions
-    -- awbar       : std_logic_vector(1 downto 0); -- Property: Barrier_Transactions
-    -- awunique    : std_logic;                   -- ACE5 property: WriteEvict_Transaction
+    awvalid       : std_logic;
+    awid          : std_logic_vector;
+    awaddr        : std_logic_vector;
+    awregion      : std_logic_vector(3 downto 0);
+    awlen         : std_logic_vector(7 downto 0);
+    awsize        : std_logic_vector(2 downto 0);
+    awburst       : std_logic_vector(1 downto 0);
+    awlock        : std_logic;
+    awcache       : std_logic_vector(3 downto 0);
+    awprot        : std_logic_vector(2 downto 0);
+    awqos         : std_logic_vector(3 downto 0);
+    awuser        : std_logic_vector;
+    awdomain      : std_logic_vector(1 downto 0);
+    awsnoop       : std_logic_vector(3 downto 0);
 
     awstashnid    : std_logic_vector(10 downto 0); -- ACE5-Lite property: Cache_Stash_Transactions
     awstashniden  : std_logic;                     -- ACE5-Lite property: Cache_Stash_Transactions
     awstashlpid   : std_logic_vector(4 downto 0);  -- ACE5-Lite property: Cache_Stash_Transactions
     awstashlpiden : std_logic;                     -- ACE5-Lite property: Cache_Stash_Transactions
 
-    awtrace     : std_logic;                    -- AXI5-only property: Trace_Signals
-    awloop      : std_logic_vector;             -- AXI5-only property: Loopback_Signals
+    awtrace       : std_logic;                    -- AXI5-only property: Trace_Signals
+    awloop        : std_logic_vector;             -- AXI5-only property: Loopback_Signals
 
-    awmmusecsid : std_logic;                    -- AXI5-only property: Untranslated_Transactions
-    awmmusid    : std_logic_vector;             -- AXI5-only property: Untranslated_Transactions
-    awmmussidv  : std_logic;                    -- AXI5-only property: Untranslated_Transactions
-    awmmussid   : std_logic_vector;             -- AXI5-only property: Untranslated_Transactions
-    awmmuatst   : std_logic;                    -- AXI5-only property: Untranslated_Transactions
+    awmmusecsid   : std_logic;                    -- AXI5-only property: Untranslated_Transactions
+    awmmusid      : std_logic_vector;             -- AXI5-only property: Untranslated_Transactions
+    awmmussidv    : std_logic;                    -- AXI5-only property: Untranslated_Transactions
+    awmmussid     : std_logic_vector;             -- AXI5-only property: Untranslated_Transactions
+    awmmuatst     : std_logic;                    -- AXI5-only property: Untranslated_Transactions
 
-    awnsaid     : std_logic_vector(3 downto 0); -- AXI5-only property: NSAccess_Identifiers
-    awatop      : std_logic_vector(5 downto 0); -- AXI5-only property: Atomic_Transactions
+    awnsaid       : std_logic_vector(3 downto 0); -- AXI5-only property: NSAccess_Identifiers
+    awatop        : std_logic_vector(5 downto 0); -- AXI5-only property: Atomic_Transactions
   end record;
 
   type ace5_lite_aw_s2m_t is record
@@ -64,39 +62,37 @@ package ace5_lite_pkg is
   end record;
 
   type ace5_lite_aw_io_t is record
-    awvalid     : std_logic;
-    awid        : std_logic_vector;
-    awaddr      : std_logic_vector;
-    awregion    : std_logic_vector(3 downto 0);
-    awlen       : std_logic_vector(7 downto 0);
-    awsize      : std_logic_vector(2 downto 0);
-    awburst     : std_logic_vector(1 downto 0);
-    awlock      : std_logic;
-    awcache     : std_logic_vector(3 downto 0);
-    awprot      : std_logic_vector(2 downto 0);
-    awqos       : std_logic_vector(3 downto 0);
-    awuser      : std_logic_vector;
-    awdomain    : std_logic_vector(1 downto 0);
-    awsnoop     : std_logic_vector(2 downto 0); -- 4 wide for other versions
-    -- awbar       : std_logic_vector(1 downto 0); -- Property: Barrier_Transactions
-    -- awunique    : std_logic;                   -- ACE5 property: WriteEvict_Transaction
+    awvalid       : std_logic;
+    awid          : std_logic_vector;
+    awaddr        : std_logic_vector;
+    awregion      : std_logic_vector(3 downto 0);
+    awlen         : std_logic_vector(7 downto 0);
+    awsize        : std_logic_vector(2 downto 0);
+    awburst       : std_logic_vector(1 downto 0);
+    awlock        : std_logic;
+    awcache       : std_logic_vector(3 downto 0);
+    awprot        : std_logic_vector(2 downto 0);
+    awqos         : std_logic_vector(3 downto 0);
+    awuser        : std_logic_vector;
+    awdomain      : std_logic_vector(1 downto 0);
+    awsnoop       : std_logic_vector(3 downto 0);
 
     awstashnid    : std_logic_vector(10 downto 0); -- ACE5-Lite property: Cache_Stash_Transactions
     awstashniden  : std_logic;                     -- ACE5-Lite property: Cache_Stash_Transactions
     awstashlpid   : std_logic_vector(4 downto 0);  -- ACE5-Lite property: Cache_Stash_Transactions
     awstashlpiden : std_logic;                     -- ACE5-Lite property: Cache_Stash_Transactions
 
-    awtrace     : std_logic;                    -- AXI5-only property: Trace_Signals
-    awloop      : std_logic_vector;             -- AXI5-only property: Loopback_Signals
+    awtrace       : std_logic;                    -- AXI5-only property: Trace_Signals
+    awloop        : std_logic_vector;             -- AXI5-only property: Loopback_Signals
 
-    awmmusecsid : std_logic;                    -- AXI5-only property: Untranslated_Transactions
-    awmmusid    : std_logic_vector;             -- AXI5-only property: Untranslated_Transactions
-    awmmussidv  : std_logic;                    -- AXI5-only property: Untranslated_Transactions
-    awmmussid   : std_logic_vector;             -- AXI5-only property: Untranslated_Transactions
-    awmmuatst   : std_logic;                    -- AXI5-only property: Untranslated_Transactions
+    awmmusecsid   : std_logic;                    -- AXI5-only property: Untranslated_Transactions
+    awmmusid      : std_logic_vector;             -- AXI5-only property: Untranslated_Transactions
+    awmmussidv    : std_logic;                    -- AXI5-only property: Untranslated_Transactions
+    awmmussid     : std_logic_vector;             -- AXI5-only property: Untranslated_Transactions
+    awmmuatst     : std_logic;                    -- AXI5-only property: Untranslated_Transactions
 
-    awnsaid     : std_logic_vector(3 downto 0); -- AXI5-only property: NSAccess_Identifiers
-    awatop      : std_logic_vector(5 downto 0); -- AXI5-only property: Atomic_Transactions
+    awnsaid       : std_logic_vector(3 downto 0); -- AXI5-only property: NSAccess_Identifiers
+    awatop        : std_logic_vector(5 downto 0); -- AXI5-only property: Atomic_Transactions
 
     awready     : std_logic;
   end record;
@@ -194,9 +190,7 @@ package ace5_lite_pkg is
     aruser      : std_logic_vector;
 
     arsnoop     : std_logic_vector(3 downto 0);
-    -- arbar       : std_logic_vector(1 downto 0); -- Property: Barrier_Transaction
     ardomain    : std_logic_vector(1 downto 0);
-    -- arvmidext   : std_logic_vector(3 downto 0); -- ACE5 property: DVM_v8.1
     artrace     : std_logic;        -- AXI5-only property: Trace_Signals
     arloop      : std_logic_vector; -- AXI5-only property: Loopback_Signals
 
@@ -233,9 +227,7 @@ package ace5_lite_pkg is
     aruser      : std_logic_vector;
 
     arsnoop     : std_logic_vector(3 downto 0);
-    -- arbar       : std_logic_vector(1 downto 0); -- Property: Barrier_Transaction
     ardomain    : std_logic_vector(1 downto 0);
-    -- arvmidext   : std_logic_vector(3 downto 0); -- ACE5 property: DVM_v8.1
     artrace     : std_logic;        -- AXI5-only property: Trace_Signals
     arloop      : std_logic_vector; -- AXI5-only property: Loopback_Signals
 
@@ -294,125 +286,17 @@ package ace5_lite_pkg is
   end record;
 
 
-  -- -----------------------------------------------------------------------------
-  -- -- Full ACE5 cache/snoop address (AC) interface
-  -- -----------------------------------------------------------------------------
-  -- type ace5_lite_ac_m2s_t is record
-  --   acready : std_logic;
-  -- end record;
-
-  -- type ace5_lite_ac_s2m_t is record
-  --   acvalid   : std_logic;
-  --   acaddr    : std_logic;
-  --   acsnoop   : std_logic_vector(3 downto 0);
-  --   acprot    : std_logic_vector(2 downto 0);
-  --   acvmidext : std_logic_vector(3 downto 0); -- Property: DVM_v8.1
-  --   actrace   : std_logic; -- ACE5-only property: Trace_Signals
-  -- end record;
-
-  -- type ace5_lite_ac_t is record
-  --   m2s: ace5_lite_ac_m2s_t;
-  --   s2m: ace5_lite_ac_s2m_t;
-  -- end record;
-
-  -- type ace5_lite_ac_io_t is record
-  --   acready : std_logic;
-
-  --   acvalid   : std_logic;
-  --   acaddr    : std_logic;
-  --   acsnoop   : std_logic_vector(3 downto 0);
-  --   acprot    : std_logic_vector(2 downto 0);
-  --   acvmidext : std_logic_vector(3 downto 0); -- Property: DVM_v8.1
-  --   actrace   : std_logic; -- ACE5-only property: Trace_Signals
-  -- end record;
-
-
-  -- -----------------------------------------------------------------------------
-  -- -- Full ACE5 cache/snoop response (CR) interface
-  -- -----------------------------------------------------------------------------
-  -- type ace5_lite_cr_m2s_t is record
-  --   crvalid   : std_logic;
-  --   crresp    : std_logic_vector(4 downto 0);
-  --   crtrace   : std_logic;                    -- ACE5-only property: Trace_Signals
-  --   crnsaid   : std_logic_vector(3 downto 0); -- ACE5-only property: Trace_Signals
-  -- end record;
-
-  -- type ace5_lite_cr_s2m_t is record
-  --   crready   : std_logic;
-  -- end record;
-
-  -- type ace5_lite_cr_t is record
-  --   m2s: ace5_lite_cr_m2s_t;
-  --   s2m: ace5_lite_cr_s2m_t;
-  -- end record;
-
-  -- type ace5_lite_cr_io_t is record
-  --   crvalid   : std_logic;
-  --   crresp    : std_logic_vector(4 downto 0);
-  --   crtrace   : std_logic;                    -- ACE5-only property: Trace_Signals
-  --   crnsaid   : std_logic_vector(3 downto 0); -- ACE5-only property: Trace_Signals
-
-  --   crready   : std_logic;
-  -- end record;
-
-
-  -- -----------------------------------------------------------------------------
-  -- -- Full ACE5 cache/snoop data (CD) interface
-  -- -----------------------------------------------------------------------------
-  -- type ace5_lite_cd_m2s_t is record
-  --   cdvalid   : std_logic;
-  --   cddata    : std_logic_vector;
-  --   cdlast    : std_logic;
-  --   cddatachk : std_logic_vector; -- ACE5-only property: Check_Type
-  --   cdpoison  : std_logic_vector; -- ACE5-only property: Poison
-  --   cdtrace   : std_logic;        -- ACE5-only property: Trace_Signals
-  -- end record;
-
-  -- type ace5_lite_cd_s2m_t is record
-  --   cdready   : std_logic;
-  -- end record;
-
-  -- type ace5_lite_cd_t is record
-  --   m2s: ace5_lite_cd_m2s_t;
-  --   s2m: ace5_lite_cd_s2m_t;
-  -- end record;
-
-  -- type ace5_lite_cd_io_t is record
-  --   cdvalid   : std_logic;
-  --   cddata    : std_logic_vector;
-  --   cdlast    : std_logic;
-  --   cddatachk : std_logic_vector; -- ACE5-only property: Check_Type
-  --   cdpoison  : std_logic_vector; -- ACE5-only property: Poison
-  --   cdtrace   : std_logic;        -- ACE5-only property: Trace_Signals
-
-  --   cdready   : std_logic;
-  -- end record;
-
-
   -----------------------------------------------------------------------------
   -- Full ACE5-Lite optional (OPT) interface
   -----------------------------------------------------------------------------
   type ace5_lite_opt_m2s_t is record
-    -- rack            : std_logic;
-    -- wack            : std_logic;
-
     awakeup         : std_logic;  -- AXI5-only property: Wakeup_Signals
-
-    -- syscoreq        : std_logic;  -- AXI5-only property: Coherency_Connection_Signals
-
     broadcastatomic : std_logic;
-    -- broadcastinner  : std_logic;
-    -- broadcastouter  : std_logic;
-    -- broadcastcachemaint : std_logic;
   end record;
 
   type ace5_lite_opt_s2m_t is record
     vawqosaccept    : std_logic_vector(3 downto 0); -- AXI5-only property: QoS_Accept
     varqosaccept    : std_logic_vector(3 downto 0); -- AXI5-only property: QoS_Accept
-
-    -- acwakeup        : std_logic;                    -- AXI5-only property: Wakeup_Signals
-
-    -- syscoack        : std_logic;  -- AXI5-only property: Coherency_Connection_Signals
   end record;
 
   type ace5_lite_opt_t is record
@@ -421,25 +305,11 @@ package ace5_lite_pkg is
   end record;
 
   type ace5_lite_opt_io_t is record
-    -- rack            : std_logic;
-    -- wack            : std_logic;
-
     awakeup         : std_logic;  -- AXI5-only property: Wakeup_Signals
-
-    -- syscoreq        : std_logic;  -- AXI5-only property: Coherency_Connection_Signals
-
     broadcastatomic : std_logic;
-    -- broadcastinner  : std_logic;
-    -- broadcastouter  : std_logic;
-    -- broadcastcachemaint : std_logic;
-
 
     vawqosaccept    : std_logic_vector(3 downto 0); -- AXI5-only property: QoS_Accept
     varqosaccept    : std_logic_vector(3 downto 0); -- AXI5-only property: QoS_Accept
-
-    -- acwakeup        : std_logic;                    -- AXI5-only property: Wakeup_Signals
-
-    -- syscoack        : std_logic;  -- AXI5-only property: Coherency_Connection_Signals
   end record;
 
 
@@ -457,12 +327,6 @@ package ace5_lite_pkg is
     b:  ace5_lite_b_t;
   end record;
 
-  -- type ace5_lite_snoop_t is record
-  --   ac: ace5_lite_ac_t;
-  --   cr: ace5_lite_cr_t;
-  --   cd: ace5_lite_cd_t;
-  -- end record;
-
   type ace5_lite_t is record
     aw: ace5_lite_aw_t;
     w:  ace5_lite_w_t;
@@ -470,10 +334,6 @@ package ace5_lite_pkg is
 
     ar: ace5_lite_ar_t;
     r:  ace5_lite_r_t;
-
-    -- ac: ace5_lite_ac_t;
-    -- cr: ace5_lite_cr_t;
-    -- cd: ace5_lite_cd_t;
 
     opt: ace5_lite_opt_t;
   end record;
@@ -500,18 +360,6 @@ package ace5_lite_pkg is
     b:  ace5_lite_b_s2m_t;
   end record;
 
-  -- type ace5_lite_snoop_m2s_t is record
-  --   ac: ace5_lite_ac_m2s_t;
-  --   cr: ace5_lite_cr_m2s_t;
-  --   cd: ace5_lite_cd_m2s_t;
-  -- end record;
-
-  -- type ace5_lite_snoop_s2m_t is record
-  --   ac: ace5_lite_ac_s2m_t;
-  --   cr: ace5_lite_cr_s2m_t;
-  --   cd: ace5_lite_cd_s2m_t;
-  -- end record;
-
   type ace5_lite_m2s_t is record
     aw: ace5_lite_aw_m2s_t;
     w:  ace5_lite_w_m2s_t;
@@ -519,10 +367,6 @@ package ace5_lite_pkg is
 
     ar: ace5_lite_ar_m2s_t;
     r:  ace5_lite_r_m2s_t;
-
-    -- ac: ace5_lite_ac_m2s_t;
-    -- cr: ace5_lite_cr_m2s_t;
-    -- cd: ace5_lite_cd_m2s_t;
 
     opt: ace5_lite_opt_m2s_t;
   end record;
@@ -535,10 +379,6 @@ package ace5_lite_pkg is
     ar: ace5_lite_ar_s2m_t;
     r:  ace5_lite_r_s2m_t;
 
-    -- ac: ace5_lite_ac_s2m_t;
-    -- cr: ace5_lite_cr_s2m_t;
-    -- cd: ace5_lite_cd_s2m_t;
-
     opt: ace5_lite_opt_s2m_t;
   end record;
 
@@ -546,39 +386,37 @@ package ace5_lite_pkg is
     ------------------------------
     -- Write Address channel
     ------------------------------
-    awvalid     : std_logic;
-    awid        : std_logic_vector;
-    awaddr      : std_logic_vector;
-    awregion    : std_logic_vector(3 downto 0);
-    awlen       : std_logic_vector(7 downto 0);
-    awsize      : std_logic_vector(2 downto 0);
-    awburst     : std_logic_vector(1 downto 0);
-    awlock      : std_logic;
-    awcache     : std_logic_vector(3 downto 0);
-    awprot      : std_logic_vector(2 downto 0);
-    awqos       : std_logic_vector(3 downto 0);
-    awuser      : std_logic_vector;
-    awdomain    : std_logic_vector(1 downto 0);
-    awsnoop     : std_logic_vector(2 downto 0); -- 4 wide for other versions
-    -- awbar       : std_logic_vector(1 downto 0); -- Property: Barrier_Transactions
-    -- awunique    : std_logic;                   -- ACE5 property: WriteEvict_Transaction
+    awvalid       : std_logic;
+    awid          : std_logic_vector;
+    awaddr        : std_logic_vector;
+    awregion      : std_logic_vector(3 downto 0);
+    awlen         : std_logic_vector(7 downto 0);
+    awsize        : std_logic_vector(2 downto 0);
+    awburst       : std_logic_vector(1 downto 0);
+    awlock        : std_logic;
+    awcache       : std_logic_vector(3 downto 0);
+    awprot        : std_logic_vector(2 downto 0);
+    awqos         : std_logic_vector(3 downto 0);
+    awuser        : std_logic_vector;
+    awdomain      : std_logic_vector(1 downto 0);
+    awsnoop       : std_logic_vector(3 downto 0);
 
     awstashnid    : std_logic_vector(10 downto 0); -- ACE5-Lite property: Cache_Stash_Transactions
     awstashniden  : std_logic;                     -- ACE5-Lite property: Cache_Stash_Transactions
     awstashlpid   : std_logic_vector(4 downto 0);  -- ACE5-Lite property: Cache_Stash_Transactions
     awstashlpiden : std_logic;                     -- ACE5-Lite property: Cache_Stash_Transactions
 
-    awtrace     : std_logic;                    -- AXI5-only property: Trace_Signals
-    awloop      : std_logic_vector;             -- AXI5-only property: Loopback_Signals
+    awtrace       : std_logic;                    -- AXI5-only property: Trace_Signals
+    awloop        : std_logic_vector;             -- AXI5-only property: Loopback_Signals
 
-    awmmusecsid : std_logic;                    -- AXI5-only property: Untranslated_Transactions
-    awmmusid    : std_logic_vector;             -- AXI5-only property: Untranslated_Transactions
-    awmmussidv  : std_logic;                    -- AXI5-only property: Untranslated_Transactions
-    awmmussid   : std_logic_vector;             -- AXI5-only property: Untranslated_Transactions
-    awmmuatst   : std_logic;                    -- AXI5-only property: Untranslated_Transactions
+    awmmusecsid   : std_logic;                    -- AXI5-only property: Untranslated_Transactions
+    awmmusid      : std_logic_vector;             -- AXI5-only property: Untranslated_Transactions
+    awmmussidv    : std_logic;                    -- AXI5-only property: Untranslated_Transactions
+    awmmussid     : std_logic_vector;             -- AXI5-only property: Untranslated_Transactions
+    awmmuatst     : std_logic;                    -- AXI5-only property: Untranslated_Transactions
 
-    awnsaid     : std_logic_vector(3 downto 0); -- AXI5-only property: NSAccess_Identifiers
-    awatop      : std_logic_vector(5 downto 0); -- AXI5-only property: Atomic_Transactions
+    awnsaid       : std_logic_vector(3 downto 0); -- AXI5-only property: NSAccess_Identifiers
+    awatop        : std_logic_vector(5 downto 0); -- AXI5-only property: Atomic_Transactions
 
     awready     : std_logic;
 
@@ -627,9 +465,7 @@ package ace5_lite_pkg is
     aruser      : std_logic_vector;
 
     arsnoop     : std_logic_vector(3 downto 0);
-    -- arbar       : std_logic_vector(1 downto 0); -- Property: Barrier_Transaction
     ardomain    : std_logic_vector(1 downto 0);
-    -- arvmidext   : std_logic_vector(3 downto 0); -- ACE5 property: DVM_v8.1
     artrace     : std_logic;        -- AXI5-only property: Trace_Signals
     arloop      : std_logic_vector; -- AXI5-only property: Loopback_Signals
 
@@ -661,39 +497,14 @@ package ace5_lite_pkg is
     rloop    : std_logic_vector; -- AXI5-only property: Loopback_Signals
 
     ------------------------------
-    -- Snoop Address
-    ------------------------------
-
-    ------------------------------
-    -- Snoop response
-    ------------------------------
-
-    ------------------------------
-    -- Snoop data
-    ------------------------------
-
-    ------------------------------
     -- Additional signals
     ------------------------------
-    -- rack            : std_logic;
-    -- wack            : std_logic;
-
     awakeup         : std_logic;  -- AXI5-only property: Wakeup_Signals
-
-    -- syscoreq        : std_logic;  -- AXI5-only property: Coherency_Connection_Signals
-
     broadcastatomic : std_logic;
-    -- broadcastinner  : std_logic;
-    -- broadcastouter  : std_logic;
-    -- broadcastcachemaint : std_logic;
-
 
     vawqosaccept    : std_logic_vector(3 downto 0); -- AXI5-only property: QoS_Accept
     varqosaccept    : std_logic_vector(3 downto 0); -- AXI5-only property: QoS_Accept
 
-    -- acwakeup        : std_logic;                    -- AXI5-only property: Wakeup_Signals
-
-    -- syscoack        : std_logic;  -- AXI5-only property: Coherency_Connection_Signals
   end record ace5_lite_t;
 end package;
 
