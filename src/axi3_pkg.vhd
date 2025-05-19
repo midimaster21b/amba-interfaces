@@ -35,10 +35,6 @@ package axi3_pkg is
     awcache : std_logic_vector(3 downto 0);
     awprot  : std_logic_vector(2 downto 0);
 
-    -- awqos    : std_logic_vector; -- AXI4 Only
-    -- awregion : std_logic_vector; -- AXI4 Only
-    -- awuser   : std_logic_vector; -- AXI4 Only
-
    awvalid : std_logic;
   end record;
 
@@ -62,10 +58,6 @@ package axi3_pkg is
     awprot  : std_logic_vector(2 downto 0);
     awvalid : std_logic;
 
-    -- awqos    : std_logic_vector; -- AXI4 Only
-    -- awregion : std_logic_vector; -- AXI4 Only
-    -- awuser   : std_logic_vector; -- AXI4 Only
-
     awready : std_logic;
   end record;
 
@@ -79,12 +71,10 @@ package axi3_pkg is
     wstrb   : std_logic_vector;
     wlast   : std_logic;
 
-    -- wuser   : std_logic_vector; -- AXI4 Only
-
     wvalid  : std_logic;
   end record;
 
-  type axi3_w_m2s_t is record
+  type axi3_w_s2m_t is record
     wready  : std_logic;
   end record;
 
@@ -98,8 +88,6 @@ package axi3_pkg is
     wdata   : std_logic_vector;
     wstrb   : std_logic_vector;
     wlast   : std_logic;
-
-    -- wuser   : std_logic_vector; -- AXI4 Only
 
     wvalid  : std_logic;
     wready  : std_logic;
@@ -116,7 +104,6 @@ package axi3_pkg is
   type axi3_b_s2m_t is record
     bid    : std_logic_vector;
     bresp  : std_logic_vector(1 downto 0);
-    -- buser  : std_logic_vector; -- AXI4 only
     bvalid : std_logic;
   end record;
 
@@ -129,7 +116,6 @@ package axi3_pkg is
     bready : std_logic;
     bid    : std_logic_vector;
     bresp  : std_logic_vector(1 downto 0);
-    -- buser  : std_logic_vector; -- AXI4 only
     bvalid : std_logic;
   end record;
 
@@ -146,10 +132,6 @@ package axi3_pkg is
     arlock  : std_logic_vector(1 downto 0);
     arcache : std_logic_vector(3 downto 0);
     arprot  : std_logic_vector(2 downto 0);
-
-    -- arqos    : std_logic_vector; -- AXI4 only
-    -- arregion : std_logic_vector; -- AXI4 only
-    -- aruser   : std_logic_vector; -- AXI4 only
 
     arvalid : std_logic;
   end record;
@@ -173,10 +155,6 @@ package axi3_pkg is
     arcache : std_logic_vector(3 downto 0);
     arprot  : std_logic_vector(2 downto 0);
 
-    -- arqos    : std_logic_vector; -- AXI4 only
-    -- arregion : std_logic_vector; -- AXI4 only
-    -- aruser   : std_logic_vector; -- AXI4 only
-
     arvalid : std_logic;
     arready : std_logic;
   end record;
@@ -191,12 +169,10 @@ package axi3_pkg is
     rresp   : std_logic_vector(1 downto 0);
     rlast   : std_logic;
 
-    -- ruser   : std_logic_vector;
-
     rvalid  : std_logic;
   end record;
 
-  type axi3_r_m2s_t is record
+  type axi3_r_s2m_t is record
     rready  : std_logic;
   end record;
 
@@ -210,8 +186,6 @@ package axi3_pkg is
     rdata   : std_logic_vector;
     rresp   : std_logic_vector(1 downto 0);
     rlast   : std_logic;
-
-    -- ruser   : std_logic_vector;
 
     rvalid  : std_logic;
     rready  : std_logic;
@@ -292,10 +266,6 @@ package axi3_pkg is
     arcache : std_logic_vector(3 downto 0);
     arprot  : std_logic_vector(2 downto 0);
 
-    -- arqos    : std_logic_vector; -- AXI4 only
-    -- arregion : std_logic_vector; -- AXI4 only
-    -- aruser   : std_logic_vector; -- AXI4 only
-
     arvalid : std_logic;
     arready : std_logic;
 
@@ -303,8 +273,6 @@ package axi3_pkg is
     rdata   : std_logic_vector;
     rresp   : std_logic_vector(1 downto 0);
     rlast   : std_logic;
-
-    -- ruser   : std_logic_vector; -- AXI4 only
 
     rvalid  : std_logic;
     rready  : std_logic;
@@ -321,10 +289,6 @@ package axi3_pkg is
     awprot  : std_logic_vector(2 downto 0);
     awvalid : std_logic;
 
-    -- awqos    : std_logic_vector; -- AXI4 Only
-    -- awregion : std_logic_vector; -- AXI4 Only
-    -- awuser   : std_logic_vector; -- AXI4 Only
-
     awready : std_logic;
 
     wid     : std_logic_vector; -- AXI3 only
@@ -332,15 +296,12 @@ package axi3_pkg is
     wstrb   : std_logic_vector;
     wlast   : std_logic;
 
-    -- wuser   : std_logic_vector; -- AXI4 Only
-
     wvalid  : std_logic;
     wready  : std_logic;
 
     bready : std_logic;
     bid    : std_logic_vector;
     bresp  : std_logic_vector(1 downto 0);
-    -- buser  : std_logic_vector; -- AXI4 only
     bvalid : std_logic;
   end record;
 
@@ -354,10 +315,6 @@ package axi3_pkg is
     arcache : std_logic_vector(3 downto 0);
     arprot  : std_logic_vector(2 downto 0);
 
-    -- arqos    : std_logic_vector; -- AXI4 only
-    -- arregion : std_logic_vector; -- AXI4 only
-    -- aruser   : std_logic_vector; -- AXI4 only
-
     arvalid : std_logic;
     arready : std_logic;
 
@@ -365,8 +322,6 @@ package axi3_pkg is
     rdata   : std_logic_vector;
     rresp   : std_logic_vector(1 downto 0);
     rlast   : std_logic;
-
-    -- ruser   : std_logic_vector; -- AXI4 only
 
     rvalid  : std_logic;
     rready  : std_logic;
@@ -381,10 +336,6 @@ package axi3_pkg is
     awprot  : std_logic_vector(2 downto 0);
     awvalid : std_logic;
 
-    -- awqos    : std_logic_vector; -- AXI4 Only
-    -- awregion : std_logic_vector; -- AXI4 Only
-    -- awuser   : std_logic_vector; -- AXI4 Only
-
     awready : std_logic;
 
     wid     : std_logic_vector; -- AXI3 only
@@ -392,15 +343,12 @@ package axi3_pkg is
     wstrb   : std_logic_vector;
     wlast   : std_logic;
 
-    -- wuser   : std_logic_vector; -- AXI4 Only
-
     wvalid  : std_logic;
     wready  : std_logic;
 
     bready : std_logic;
     bid    : std_logic_vector;
     bresp  : std_logic_vector(1 downto 0);
-    -- buser  : std_logic_vector; -- AXI4 only
     bvalid : std_logic;
   end record;
 end package;

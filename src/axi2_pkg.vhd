@@ -74,7 +74,7 @@ package axi2_pkg is
     wvalid  : std_logic;
   end record;
 
-  type axi2_w_m2s_t is record
+  type axi2_w_s2m_t is record
     wready  : std_logic;
   end record;
 
@@ -100,7 +100,7 @@ package axi2_pkg is
     bready : std_logic;
   end record;
 
-  type axi2_b_m2s_t is record
+  type axi2_b_s2m_t is record
     bid    : std_logic_vector(ID_WIDTH_C-1 downto 0);
     bresp  : std_logic_vector(1 downto 0);
     bvalid : std_logic;
@@ -168,7 +168,7 @@ package axi2_pkg is
     rvalid  : std_logic;
   end record;
 
-  type axi2_r_m2s_t is record
+  type axi2_r_s2m_t is record
     rready  : std_logic;
   end record;
 

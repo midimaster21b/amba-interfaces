@@ -9,8 +9,8 @@ need to be tested.
 
 | Standard     | Rev. B | Rev. C | Rev. D | Rev. E | Rev. F | Rev. G | Rev. H | Rev. I | Rev. J | Rev. K |
 | --------     | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| AXI v1.0     | [vhdl](src/axi1_pkg.vhd) |        |        |        |        |        |        |        |        |        |
-| AXI v2.0     |        | [vhdl](src/axi2_pkg.vhd) |        |        |        |        |        |        |        |        |
+| AXI v1.0     | [vhdl](src/axi1_pkg.vhd) \| [SystemVerilog](src/axi1_if.sv) |        |        |        |        |        |        |        |        |        |
+| AXI v2.0     |        | [vhdl](src/axi2_pkg.vhd) \| [SystemVerilog](src/axi2_if.sv) |        |        |        |        |        |        |        |        |
 | AXI3         |        |        | [vhdl](src/axi3_pkg.vhd) |        |        |        |        |        |        |        |
 | AXI4         |        |        | [vhdl](src/axi4_pkg.vhd) |        |        |        |        |        |        |        |
 | AXI4-Lite    |        |        | [vhdl](src/axi4_lite_pkg.vhd) |        |        |        |        |        |        |        |
