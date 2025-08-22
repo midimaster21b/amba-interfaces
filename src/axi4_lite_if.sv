@@ -2,34 +2,40 @@ interface axi4_lite_if #(parameter
 			 DATA_BYTES=4,
 			 ADDR_BYTES=4) (input aclk, aresetn);
 
+   localparam NUM_ADDR_BITS  = ADDR_BYTES*8;
+   localparam NUM_DATA_BITS  = DATA_BYTES*8;
+   localparam NUM_STRB_BITS  = DATA_BYTES;
+   localparam NUM_RESP_BITS  = 2;
+   localparam NUM_PROT_BITS  = 3;
+
    // Write address channel
    logic awvalid;
    logic awready;
-   logic [(ADDR_BYTES*8)-1:0] awaddr;
-   logic [2:0] awprot;
+   logic [NUM_ADDR_BITS-1:0] awaddr;
+   logic [NUM_PROT_BITS-1:0] awprot;
 
    // Write data channel
    logic wvalid;
    logic wready;
-   logic [(DATA_BYTES*8)-1:0] wdata;
-   logic [DATA_BYTES-1:0] wstrb;
+   logic [NUM_DATA_BITS-1:0] wdata;
+   logic [NUM_STRB_BITS-1:0] wstrb;
 
    // Write response channel
    logic bvalid;
    logic bready;
-   logic [1:0] bresp;
+   logic [NUM_RESP_BITS-1:0] bresp;
 
    // Read address channel
    logic arvalid;
    logic arready;
-   logic [(ADDR_BYTES*8)-1:0] araddr;
-   logic [2:0] arprot;
+   logic [NUM_ADDR_BITS-1:0] araddr;
+   logic [NUM_PROT_BITS-1:0] arprot;
 
    // Read data channel
    logic rvalid;
    logic rready;
-   logic [(DATA_BYTES*8)-1:0] rdata;
-   logic [1:0] rresp;
+   logic [NUM_DATA_BITS-1:0] rdata;
+   logic [NUM_RESP_BITS-1:0] rresp;
 
 
    modport master (input  awready, wready, bvalid, bresp, arready, rvalid, rdata, rresp,
