@@ -10,6 +10,7 @@ interface axis_if #(parameter
    localparam NUM_ID_BITS    = TID_BITS;
    localparam NUM_DEST_BITS  = TDEST_BITS;
    localparam NUM_USER_BITS  = TUSER_BITS;
+   localparam NUM_LAST_BITS  = 1;
 
    logic tvalid;
    logic tready;

@@ -29,7 +29,7 @@ interface axi4_if #(parameter
    logic		       awlock;
    logic [NUM_REGION_BITS-1:0] awregion;
    logic [NUM_BURST_BITS-1:0]  awburst;
-   logic [NUM_ID_BITS_P-1:0]   awid;
+   logic [NUM_ID_BITS-1:0]     awid;
    logic [NUM_LEN_BITS-1:0]    awlen;
    logic [NUM_QOS_BITS-1:0]    awqos;
    logic [NUM_USER_BITS-1:0]   awuser;
